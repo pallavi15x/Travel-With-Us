@@ -1,0 +1,162 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════
+   LUXE WANDERLUST — Premium Travel Palette
+   ═══════════════════════════════════════════ */
+
+@theme {
+  /* Core Brand Colors */
+  --color-primary: #34495E;       /* Midnight Sky */
+  --color-secondary: #E1E2E1;     /* Moonlight */
+  --color-accent: #1C2833;        /* Deep Ocean */
+  --color-teal: #34495E;          /* Midnight Sky */
+  --color-background: #E1E2E1;    /* Moonlight */
+  --color-dark: #0D1B2A;          /* Noir */
+
+  /* Dark Mode Surfaces */
+  --color-dark-bg: #0D1B2A;       /* Noir */
+  --color-dark-text: #E1E2E1;     /* Moonlight */
+  --color-dark-accent: #1C2833;   /* Deep Ocean */
+}
+
+@layer base {
+  :root {
+    --bg-color: #E1E2E1;
+    --text-color: #0D1B2A;
+    --border-color: #34495E;
+  }
+
+  .dark {
+    --bg-color: #0D1B2A;
+    --text-color: #E1E2E1;
+    --border-color: #1C2833;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    border-color: var(--border-color);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   Custom Scrollbar — Premium
+   ═══════════════════════════════════════════ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #34495E, #1C2833);
+  border-radius: 20px;
+  border: 2px solid var(--bg-color);
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #34495E, #E1E2E1);
+}
+
+/* ═══════════════════════════════════════════
+   Utility Classes
+   ═══════════════════════════════════════════ */
+
+/* Glassmorphism */
+.glass {
+  @apply bg-white/10 backdrop-blur-xl border border-white/10;
+}
+.dark .glass {
+  @apply bg-black/20 backdrop-blur-2xl border border-white/5;
+}
+
+/* Hide Scrollbar */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Selection */
+::selection {
+  background: #34495E;
+  color: #E1E2E1;
+}
+
+/* ═══════════════════════════════════════════
+   Keyframe Animations
+   ═══════════════════════════════════════════ */
+
+/* Gradient Shimmer — for buttons & CTAs */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer-btn {
+  background: linear-gradient(90deg, #0D1B2A 0%, #34495E 25%, #1C2833 50%, #34495E 75%, #0D1B2A 100%);
+  background-size: 400% 100%;
+  animation: shimmer 6s ease-in-out infinite;
+}
+
+/* Float — for decorative elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(5px) rotate(-1deg); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Pulse Glow — for active highlights */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 15px rgba(52, 73, 94, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(52, 73, 94, 0.6), 0 0 60px rgba(28, 40, 51, 0.2); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #34495E 0%, #1C2833 50%, #0D1B2A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Aurora Background Effect */
+@keyframes aurora {
+  0%, 100% { opacity: 0.5; transform: translateX(0) translateY(0) scale(1); }
+  25% { opacity: 0.7; transform: translateX(50px) translateY(-30px) scale(1.1); }
+  50% { opacity: 0.4; transform: translateX(-30px) translateY(20px) scale(0.95); }
+  75% { opacity: 0.6; transform: translateX(20px) translateY(-10px) scale(1.05); }
+}
+.animate-aurora {
+  animation: aurora 15s ease-in-out infinite;
+}
+
+/* Spin slow — for decorative rotating elements */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Card entrance stagger */
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slide-up-fade 0.6s ease-out forwards;
+}
